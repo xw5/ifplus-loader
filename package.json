@@ -1,0 +1,12 @@
+{
+  "name": "conditional-compiler-loader",
+  "version": "1.0.0",
+  "description": "防uniapp的开发的条件编译loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["conditional", "conditional-compiler", "conditional-compiler-loader"],
+  "author": "",
+  "license": "ISC"
+}
