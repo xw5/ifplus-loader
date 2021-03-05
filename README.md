@@ -18,7 +18,7 @@ module.exports = {
         exclude: [path.resolve(__dirname, 'node_modules')],
         use:[
           {
-            loader: 'ifdnf-loader'
+            loader: 'ifplus-loader'
           }
         ]
       },
