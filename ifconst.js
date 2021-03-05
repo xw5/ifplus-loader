@@ -29,6 +29,10 @@ exports.types = {
   "ifndef": 'ifndef',
   "ifdef": "ifdef"
 }
+
+// 条件key
+exports.ifKey = "--ifplus=";
+
 // /<!--  #ifndef (\w+) -->([\w\W]+)<!--  #endif -->/, 
 // /<!--  #ifdef (\w+) -->([\w\W]+)<!--  #endif -->/,
 // /\/\*  #ifndef  (\w+)  \*\/([\w\W]+)\/\*  #endif  \*\//,

@@ -1,3 +1,4 @@
+div 
 # webpack条件编译loader
 条件编译是用特殊的注释作为标记，在编译时根据这些特殊的注释，将注释里面的代码编译到不同平台。
 
@@ -28,15 +29,15 @@ module.exports = {
 ```
 
 ## package.json配置：
-&emsp;&emsp;此处以vue项目为例，假设我们的项目WEB和DESKTOP共用一套代码，希望通过不同保住编译到不同环境，则只要VUE编译命令加上相关参数即可，例：
+&emsp;&emsp;以vue项目为例，假设我们的项目WEB和DESKTOP共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
 
 ``` json
 {
   "scripts": {
-    "serve": "vue-cli-service serve --compiler=WEB",
-    "serve:desktop": "vue-cli-service serve --compiler=DESKTOP",
-    "build": "vue-cli-service build --compiler=WEB",
-    "build": "vue-cli-service build --compiler=DESKTOP",
+    "serve": "vue-cli-service serve --ifplus=WEB",
+    "serve:desktop": "vue-cli-service serve --ifplus=DESKTOP",
+    "build": "vue-cli-service build --ifplus=WEB",
+    "build": "vue-cli-service build --ifplus=DESKTOP",
     "lint": "vue-cli-service lint"
   },
 }

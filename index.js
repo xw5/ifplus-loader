@@ -1,11 +1,11 @@
 const process = require("process");
-const { regexList, types} = require("./ifconst.js");
+const { regexList, types, ifKey} = require("./ifconst.js");
 
 module.exports = function (source) {
   // 获取命令行参数
   const { argv } = process;
   const conditionalItem = argv.find((item) => {
-    return item.indexOf("--compiler=") != -1;
+    return item.indexOf(ifKey) != -1;
   });
 
   // 如果没有传任务关于条件判断相关的参数则不做任务处理返回源数据
