@@ -17,11 +17,11 @@ exports.regexList = [{
 },
 {
   type: "ifndef",
-  test: /\/\/ #ifndef (\w+?) ([\w\W]+?)\/\/ #endif/
+  test: /\/\/ #ifndef ([\w\B]+)([\w\W]+?)\/\/ #endif/
 },
 {
   type: "ifdef",
-  test: /\/\/ #ifdef (\w+?) ([\w\W]+?)\/\/ #endif/
+  test: /\/\/ #ifdef ([\w\B]+)([\w\W]+?)\/\/ #endif/
 }];
 
 // 条件类型

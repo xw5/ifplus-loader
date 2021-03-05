@@ -71,15 +71,15 @@ module.exports = {
 #### &emsp;&emsp;示例：
 &emsp;&emsp;下面js代码在WEB端会控制台打印出"我是WEB端日志, 我是非桌面端",而在桌面端会在控制台打印”我是非桌面端“
 ``` js
-// #ifdef WEB 
+// #ifdef WEB
 console.log("我是WEB端");
 // #endif
 
-// #ifdef DESKTOP 
+// #ifdef DESKTOP
 console.log("我是桌面端");
 // #endif
 
-// #ifndef DESKTOP 
+// #ifndef DESKTOP
 console.log("我是非桌面端");
 // #endif
 ```
