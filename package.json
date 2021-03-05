@@ -1,5 +1,5 @@
 {
-  "name": "conditional-compiler-loader",
+  "name": "ifdef-loader",
   "version": "1.0.0",
   "description": "防uniapp的条件编译loader",
   "main": "index.js",
@@ -7,6 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["conditional", "conditional-compiler", "ifdef-loader"],
-  "author": "",
+  "homepage": "https://gitee.com/github-9819409/ifdef-loader",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/github-9819409/ifdef-loader"
+  },
+  "author": {
+    "name": "xw",
+    "email": "xiewu5550@163.com"
+  },
   "license": "ISC"
 }
