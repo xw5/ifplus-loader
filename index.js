@@ -1,5 +1,5 @@
 const process = require("process");
-const { regexList, types} = require("./conditionalConst.js");
+const { regexList, types} = require("./ifdefconst.js");
 
 module.exports = function (source) {
   // 获取命令行参数
