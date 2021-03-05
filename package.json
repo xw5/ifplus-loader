@@ -1,16 +1,16 @@
 {
-  "name": "ifdef-loader",
+  "name": "ifplus-loader",
   "version": "1.0.0",
-  "description": "防uniapp的条件编译loader",
+  "description": "跟uniapp类似的条件编译loader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["conditional", "conditional-compiler", "ifdef-loader"],
-  "homepage": "https://gitee.com/github-9819409/ifdef-loader",
+  "keywords": ["conditional", "conditional-compiler", "if-loader"],
+  "homepage": "https://gitee.com/github-9819409/ifplus-loader",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/github-9819409/ifdef-loader"
+    "url": "https://gitee.com/github-9819409/ifplus-loader"
   },
   "author": {
     "name": "xw",
