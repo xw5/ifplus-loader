@@ -4,7 +4,7 @@
 ## 安装：
 
 ``` shell
-npm install ifconst --save-dev
+npm install ifplus-loader --save-dev
 ```
 
 ## webpack配置：
