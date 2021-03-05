@@ -16,6 +16,11 @@ module.exports = function (source) {
   // 获取条件判断关键字
   let conditionalKey = conditionalItem.split("=")[1];
   
+  // 如果获取编译平台关键字出错则直接返回源数据
+  if (!conditionalKey) {
+    return source;
+  }
+
   // 递归的正则匹配
   function matchRegex(item) {
     let matchs = source.match(item.test);

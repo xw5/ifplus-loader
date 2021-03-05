@@ -1,5 +1,5 @@
 # webpack条件编译loader
-条件编译是用特殊的注释作为标记，在编译时根据这些特殊的注释，将注释里面的代码编译到不同平台。
+条件编译是用特殊的注释作为标记，在编译时根据这些特殊的注释，将特殊标记里面的代码编译到不同平台来做到一套代码多端发行。
 
 ## 安装：
 
@@ -62,14 +62,14 @@ module.exports = {
 
 ```
 
-### &emsp;&emsp;JS中的条件编译：
+### JS中的条件编译：
 ``` js
 // #ifdef  %PLATFORM%
 平台特有的代码实现
 // #endif
 ```
-#### &emsp;&emsp;示例：
-&emsp;&emsp;下面js代码在WEB端会控制台打印出"我是WEB端日志, 我是非桌面端",而在桌面端会在控制台打印”我是非桌面端“
+#### 示例：
+&emsp;&emsp;下面js代码在WEB端会控制台打印出"我是WEB端, 我是非桌面端",而在桌面端会在控制台打印”我是非桌面端“
 ``` js
 // #ifdef WEB
 console.log("我是WEB端");
@@ -84,13 +84,13 @@ console.log("我是非桌面端");
 // #endif
 ```
 
-### &emsp;&emsp;HTML中的条件编译：
+### HTML中的条件编译：
 ``` html
 <!-- #ifdef %PLATFORM% -->
 平台特有的html
 <!-- #endif -->
 ```
-#### &emsp;&emsp;示例：
+#### 示例：
 &emsp;&emsp;下面html在WEB端会显示"我是WEB端 我是非桌面端",在桌面端会显示我是桌面端
 ``` html
 <!-- #ifdef WEB -->
@@ -105,13 +105,13 @@ console.log("我是非桌面端");
 <div>我是非桌面端</div>
 <!-- #endif -->
 ```
-### &emsp;&emsp;样式中条件编译：
+### 样式中条件编译：
 ``` css
 /* #ifdef %PLATFORM% */
 平台特有样式
 /* #endif */
 ```
-#### &emsp;&emsp;示例：
+#### 示例：
 &emsp;&emsp;下面样式名为test的dom在WEB平台下显示绿色和0.5的透明度，桌面端显示红色不透明
 ``` css
 .test{

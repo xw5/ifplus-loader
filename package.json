@@ -1,12 +1,12 @@
 {
   "name": "ifplus-loader",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "webpack条件编译loader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["conditional", "conditional-compiler", "if-loader"],
+  "keywords": ["conditional", "conditional-compiler", "ifplus-loader"],
   "homepage": "https://gitee.com/github-9819409/ifplus-loader",
   "repository": {
     "type": "git",
