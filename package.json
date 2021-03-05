@@ -1,7 +1,7 @@
 {
   "name": "ifplus-loader",
-  "version": "1.0.0",
-  "description": "跟uniapp类似的条件编译loader",
+  "version": "1.0.1",
+  "description": "webpack条件编译loader",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
