@@ -36,7 +36,7 @@ module.exports = {
     "serve": "vue-cli-service serve --ifplus=WEB",
     "serve:desktop": "vue-cli-service serve --ifplus=DESKTOP",
     "build": "vue-cli-service build --ifplus=WEB",
-    "build": "vue-cli-service build --ifplus=DESKTOP",
+    "build:desktop": "vue-cli-service build --ifplus=DESKTOP",
     "lint": "vue-cli-service lint"
   },
 }
@@ -128,3 +128,6 @@ console.log("我是非桌面端");
   /* #endif */
 }
 ```
+
+## Visual Studio Code下更好的使用体验
+如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
