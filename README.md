@@ -28,7 +28,7 @@ module.exports = {
 ```
 
 ## package.json配置：
-&emsp;&emsp;以vue项目为例，假设我们的项目WEB和DESKTOP共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
+&emsp;&emsp;以vue项目为例，假设我们的项目WEB平台和DESKTOP平台共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
 
 ``` json
 {
@@ -43,6 +43,7 @@ module.exports = {
 ```
 
 ## 条件编译在代码中到底怎么用？
+&emsp;&emsp;以下所有示例都以WEB和DESKTOP二个平台来做示例演示，真正项目开发中你可以定义你自己想要发布的平台类型，跟你代码里的保持一致即可。
 
 ``` md
 // 在WEB编译环境下保留
@@ -130,4 +131,4 @@ console.log("我是非桌面端");
 ```
 
 ## Visual Studio Code下更好的使用体验
-如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
+&emsp;&emsp;如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
