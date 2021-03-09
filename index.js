@@ -25,25 +25,29 @@ module.exports = function (source) {
   function matchRegex(item) {
     let matchs = source.match(item.test);
     // console.log("matchRegex", conditionalKey, matchs);
+    
     if (!matchs) {
       return;
     }
 
     // 处理仅在某平台存在的情况
+    const matchsFirst = matchs[0];
+    // 处理首尾空格
+    const matchsSecond = matchs[2].replace(/^\n|\n$/g, '');
     if (item.type == types.ifndef) {
       if (matchs[1].indexOf(conditionalKey) !== -1) {
-        source = source.replace(matchs[0], '');
+        source = source.replace(matchsFirst, '');
       } else {
-        source = source.replace(matchs[0], matchs[2]);
+        source = source.replace(matchsFirst, matchsSecond);
       }
     }
 
     // 处理除了某平台均存在的情况
     if (item.type == types.ifdef) {
       if (matchs[1].indexOf(conditionalKey) === -1) {
-        source = source.replace(matchs[0], '');
+        source = source.replace(matchsFirst, '');
       } else {
-        source = source.replace(matchs[0], matchs[2]);
+        source = source.replace(matchsFirst, matchsSecond);
       }
     }
     item.test.lastIndex = 0;
