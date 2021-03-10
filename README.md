@@ -13,26 +13,30 @@ npm install ifplus-loader --save-dev
 ``` js
 // vue.config.js
 ...
-configureWebpack: (config) => {
-  config.module.rules.push({
-    test: /\.(vue|css|json)$/,
-    enforce: 'pre',
-    exclude: [path.resolve(__dirname, 'node_modules')],
-    use:[
+configureWebpack: {
+  module: {
+    rules:[
       {
-        loader: "ifplus-loader"
-      }
+        test: /\.(vue|css|json)$/,
+        exclude: [path.resolve(__dirname, 'node_modules')],
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'ifplus-loader'
+          }
+        ]
+      },{
+        test: /\.js$/,
+        exclude: [path.resolve(__dirname, 'node_modules')],
+        enforce: 'post',
+        use: [
+          {
+            loader: 'ifplus-loader'
+          }
+        ]
+      },
     ]
-  },{
-    test: /\.js$/,
-    enforce: 'post',
-    exclude: [path.resolve(__dirname, 'node_modules')],
-    use:[
-      {
-        loader: "ifplus-loader"
-      }
-    ]
-  });
+  }
 }
 ...
 ```
