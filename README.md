@@ -1,5 +1,5 @@
 # webpack条件编译loader
-条件编译是用特殊的注释作为标记，在编译时根据这些特殊的注释，将特殊标记里面的代码编译到不同平台来做到一套代码多端发行。
+>条件编译是用特殊的注释作为标记，在编译时根据这些特殊的注释，将特殊标记里面的代码编译到不同平台来做到一套代码多端发行。
 
 ## 安装：
 
@@ -7,28 +7,38 @@
 npm install ifplus-loader --save-dev
 ```
 
-## webpack配置：
+## webpack配置，此处以vue项目为例：
+>亲测在vue项目中如果js文件loader不放最后会出现部分失败的问题，推荐使用如下配置即可，如果其它项目可以按正常webpack的loader配置即可，如果发现问题可以添加enforce来控制loader执行顺序解决。
 
 ``` js
-module.exports = {
-  module: {
-    rules: [
+// vue.config.js
+...
+configureWebpack: (config) => {
+  config.module.rules.push({
+    test: /\.(vue|css|json)$/,
+    enforce: 'pre',
+    exclude: [path.resolve(__dirname, 'node_modules')],
+    use:[
       {
-        test: /\.(js|vue|css|json)$/,
-        exclude: [path.resolve(__dirname, 'node_modules')],
-        use:[
-          {
-            loader: 'ifplus-loader'
-          }
-        ]
-      },
-    ],
-  },
-};
+        loader: "ifplus-loader"
+      }
+    ]
+  },{
+    test: /\.js$/,
+    enforce: 'post',
+    exclude: [path.resolve(__dirname, 'node_modules')],
+    use:[
+      {
+        loader: "ifplus-loader"
+      }
+    ]
+  });
+}
+...
 ```
 
 ## package.json配置：
-&emsp;&emsp;以vue项目为例，假设我们的项目WEB平台和DESKTOP平台共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
+>以vue项目为例，假设我们的项目WEB平台和DESKTOP平台共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
 
 ``` json
 {
@@ -43,7 +53,7 @@ module.exports = {
 ```
 
 ## 条件编译在代码中到底怎么用？
-&emsp;&emsp;以下所有示例都以WEB和DESKTOP二个平台来做示例演示，真正项目开发中你可以定义你自己想要发布的平台类型，跟你代码里的保持一致即可。
+>以下所有示例都以WEB和DESKTOP二个平台来做示例演示，真正项目开发中你可以定义你自己想要发布的平台类型，跟你代码里的保持一致即可。
 
 ``` md
 // 在WEB编译环境下保留
@@ -70,7 +80,7 @@ module.exports = {
 // #endif
 ```
 #### 示例：
-&emsp;&emsp;下面js代码在WEB端会控制台打印出"我是WEB端, 我是非桌面端",而在桌面端会在控制台打印”我是非桌面端“
+>下面js代码在WEB端会控制台打印出"我是WEB端, 我是非桌面端",而在桌面端会在控制台打印”我是非桌面端“
 ``` js
 // #ifdef WEB
 console.log("我是WEB端");
@@ -92,7 +102,7 @@ console.log("我是非桌面端");
 <!-- #endif -->
 ```
 #### 示例：
-&emsp;&emsp;下面html在WEB端会显示"我是WEB端 我是非桌面端",在桌面端会显示我是桌面端
+>下面html在WEB端会显示"我是WEB端 我是非桌面端",在桌面端会显示我是桌面端
 ``` html
 <!-- #ifdef WEB -->
 <div>我是WEB端</div>
@@ -113,7 +123,7 @@ console.log("我是非桌面端");
 /* #endif */
 ```
 #### 示例：
-&emsp;&emsp;下面样式名为test的dom在WEB平台下显示绿色和0.5的透明度，桌面端显示红色不透明
+>下面样式名为test的dom在WEB平台下显示绿色和0.5的透明度，桌面端显示红色不透明
 ``` css
 .test{
   /* #ifdef WEB */
@@ -131,4 +141,4 @@ console.log("我是非桌面端");
 ```
 
 ## Visual Studio Code下更好的使用体验
-&emsp;&emsp;如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
+>如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。

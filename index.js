@@ -25,11 +25,9 @@ module.exports = function (source) {
   function matchRegex(item) {
     let matchs = source.match(item.test);
     // console.log("matchRegex", conditionalKey, matchs);
-    
     if (!matchs) {
       return;
     }
-
     // 处理仅在某平台存在的情况
     const matchsFirst = matchs[0];
     // 处理首尾空格
