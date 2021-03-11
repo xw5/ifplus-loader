@@ -8,11 +8,21 @@ npm install ifplus-loader --save-dev
 ```
 
 ## webpack配置，此处以vue项目为例：
->亲测在vue项目中如果js文件loader不放最后会出现部分失败的问题，推荐使用如下配置即可，如果其它项目可以按正常webpack的loader配置即可，如果发现问题可以添加enforce来控制loader执行顺序解决。
+>亲测在vue项目中如果js文件处理不放最后在切换平台运行的时候会出现问题，推荐使用如下配置，其它项目可以按正常webpack的loader配置即可，如果发现有问题可以试着清除打包中的缓存和尝试添加enforce来控制loader执行顺序解决。
 
 ``` js
 // vue.config.js
 ...
+chainWebpack: (config) => {
+  // 在切换--ifplus=WEB | DESKTOP时，yarn serve之后页面存在缓存，使用下面禁用vue---cache-loader&vue-loader的cache方式解决，正常的情况下，不要做这个处理，影响打包时间
+  const svueRule = config.module.rule('vue');
+  svueRule.uses.delete('cache-loader');
+
+  config.module.rule('vue').use('vue-loader').tap(options => {
+    options.cacheIdentifier = null;
+    return options
+  })
+},
 configureWebpack: {
   module: {
     rules:[
