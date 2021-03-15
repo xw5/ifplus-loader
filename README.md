@@ -13,36 +13,14 @@ npm install ifplus-loader --save-dev
 ``` js
 // vue.config.js
 ...
-chainWebpack: (config) => {
-  // 在切换--ifplus=WEB | DESKTOP时，yarn serve之后页面存在缓存，使用下面禁用vue---cache-loader&vue-loader的cache方式解决，正常的情况下，不要做这个处理，影响打包时间
-  const svueRule = config.module.rule('vue');
-  svueRule.uses.delete('cache-loader');
-
-  config.module.rule('vue').use('vue-loader').tap(options => {
-    options.cacheIdentifier = null;
-    return options
-  })
-},
 configureWebpack: (config) => {
   config.module.rules.push({
-    test: /\.(vue|css|json)$/,
+    test: /\.(js|vue|css|json)$/,
     exclude: [path.resolve(__dirname, 'node_modules')],
     enforce: 'pre',
     use: [
       {
-        loader: 'ifplus-loader',
-        options: {
-          platform: pjson.platform
-        }
-      }
-    ]
-  },{
-    test: /\.js$/,
-    exclude: [path.resolve(__dirname, 'node_modules')],
-    enforce: 'post',
-    use: [
-      {
-        loader: 'ifplus-loader'
+        loader: `ifplus-loader?_t=${Date.now()}`
       }
     ]
   });
