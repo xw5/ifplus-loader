@@ -1,20 +1,38 @@
 const process = require("process");
+const loaderUtils = require("loader-utils");
 const { regexList, types, ifKey} = require("./ifconst.js");
+let conditionalKey = "";
 
-module.exports = function (source) {
-  // 获取命令行参数
+/**
+* 获取条件判断关键字
+*/
+function getConditionalKey() {
+  let conditionalKey = "";
+  // 获取通过loader的query方式传过来条件判断关键字
+  let options = loaderUtils.getOptions(this);
+  conditionalKey = options.platform ? options.platform : "";
+  if (conditionalKey) {
+    return conditionalKey;
+  }
+
+  // 获取命令行上传过来的条件判断关键字
   const { argv } = process;
   const conditionalItem = argv.find((item) => {
     return item.indexOf(ifKey) != -1;
   });
-
-  // 如果没有传任务关于条件判断相关的参数则不做任务处理返回源数据
   if (!conditionalItem) {
-    return source;
+    return conditionalKey;
   }
+  conditionalKey = conditionalItem.split("=")[1];
 
+  return conditionalKey ? conditionalKey : "";
+}
+
+module.exports = function (source) {
   // 获取条件判断关键字
-  let conditionalKey = conditionalItem.split("=")[1];
+  if (!conditionalKey) {
+    conditionalKey = getConditionalKey.call(this);
+  }
   
   // 如果获取编译平台关键字出错则直接返回源数据
   if (!conditionalKey) {

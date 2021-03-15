@@ -7,8 +7,44 @@
 npm install ifplus-loader --save-dev
 ```
 
-## webpack配置，此处以vue项目为例：
->loader后加了"?_t=时间戳"，主要是为了解决webpack的缓存机制，不然缓存过的文件，在你切换平台的时候，ifplus-loader不会执行到，导致平台代码切换失败。
+## 项目配置说明（此处以vue项目为例）：
+### 配置方式1
+>通过loader后加query传参来决定当前是走哪个平台，通过在loader后加“?platform=平台名称”来告诉ifplus-loader当前走哪种条件编译，如果不想频烦更loader里的配置，可以把参数配置到package.json，再引入拼接进来，具体怎么方便你可以自行决定，只要能正确传入参数即可。
+
+``` js
+// vue.config.js
+...
+configureWebpack: (config) => {
+  config.module.rules.push({
+    test: /\.(js|vue|css|json)$/,
+    exclude: [path.resolve(__dirname, 'node_modules')],
+    enforce: 'pre',
+    use: [
+      {
+        loader: 'ifplus-loader?platform=WEB'
+      }
+    ]
+  });
+},
+...
+```
+
+### 配置方式2
+>通过命令行传参的形式来判断当前是走哪个平台，在命令行后通过给--ifplus指定不同平台来告诉ifplus-loader当前应该走哪种条件编译。
+``` json
+// package.json
+...
+{
+  "scripts": {
+    "serve": "vue-cli-service serve --ifplus=WEB",
+    "serve:desktop": "vue-cli-service serve --ifplus=DESKTOP",
+    "build": "vue-cli-service build --ifplus=WEB",
+    "build:desktop": "vue-cli-service build --ifplus=DESKTOP",
+    "lint": "vue-cli-service lint"
+  },
+}
+...
+```
 
 ``` js
 // vue.config.js
@@ -27,21 +63,12 @@ configureWebpack: (config) => {
 },
 ...
 ```
-
-## package.json配置：
->以vue项目为例，假设我们的项目WEB平台和DESKTOP平台共用一套代码，希望不同的代码编译到不同的平台，则只要VUE编译命令加上相关参数即可，例：
-
-``` json
-{
-  "scripts": {
-    "serve": "vue-cli-service serve --ifplus=WEB",
-    "serve:desktop": "vue-cli-service serve --ifplus=DESKTOP",
-    "build": "vue-cli-service build --ifplus=WEB",
-    "build:desktop": "vue-cli-service build --ifplus=DESKTOP",
-    "lint": "vue-cli-service lint"
-  },
-}
-```
+### 配置方式差异
+>配置方式1：在平台有变化的时候重新启动的时候会清空webpack的缓存，而在不切换平台的时候缓存还是可以使用的,webpack构建速度略高于方式2;
+>
+>配置方式2：会每次启动项目都会清空webpack的缓存，webpack构建速度略低，如果不在乎那一点速度，我觉得你用哪种都可以的。
+>
+>二种配置方式都需要通过loader后+query参数，这样做主要是为了强制webpack更新缓存，如果不更新缓存的话，那已经缓存的文件不会再走ifplus-loader，导致平台切换的时候条件编译会失败。
 
 ## 条件编译在代码中到底怎么用？
 >以下所有示例都以WEB和DESKTOP二个平台来做示例演示，真正项目开发中你可以定义你自己想要发布的平台类型，跟你代码里的保持一致即可。
@@ -132,4 +159,4 @@ console.log("我是非桌面端");
 ```
 
 ## Visual Studio Code下更好的使用体验
->如果你是使用Visual Studio Code做开发，那恭喜你，你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
+>如果你是使用Visual Studio Code做开发，那你可以安装Common-Code-Snippet插件，当你想要使用条件编译的时候输入ifplus即可快速输入条件判断语句,当然Common-Code-Snippet还有很多一样好用的代码段，应该也能帮你提高你的开发体验。
