@@ -8,7 +8,7 @@ npm install ifplus-loader --save-dev
 ```
 
 ## webpack配置，此处以vue项目为例：
->亲测在vue项目中如果js文件处理不放最后在切换平台运行的时候会出现问题，推荐使用如下配置，其它项目可以按正常webpack的loader配置即可，如果发现有问题可以试着清除打包中的缓存和尝试添加enforce来控制loader执行顺序解决。
+>loader后加了"?_t=时间戳"，主要是为了解决webpack的缓存机制，不然缓存过的文件，在你切换平台的时候，ifplus-loader不会执行到，导致平台代码切换失败。
 
 ``` js
 // vue.config.js
