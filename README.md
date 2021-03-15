@@ -12,7 +12,6 @@ npm install ifplus-loader --save-dev
 
 ``` js
 // vue.config.js
-const GenerateAssetPlugin = require('generate-asset-webpack-plugin');
 ...
 chainWebpack: (config) => {
   // 在切换--ifplus=WEB | DESKTOP时，yarn serve之后页面存在缓存，使用下面禁用vue---cache-loader&vue-loader的cache方式解决，正常的情况下，不要做这个处理，影响打包时间
@@ -25,14 +24,6 @@ chainWebpack: (config) => {
   })
 },
 configureWebpack: (config) => {
-  config.plugins.push(
-    new GenerateAssetPlugin({
-      filename: 'dynamicConfig.json',
-      fn: (compilation, cb) => {
-        cb(null, createConfig(compilation))
-      }
-    })
-  );
   config.module.rules.push({
     test: /\.(vue|css|json)$/,
     exclude: [path.resolve(__dirname, 'node_modules')],
